@@ -11,7 +11,8 @@ env:
   ROM_NAME: MIUI
   BUILD_TYPE: ab
   TZ: Asia/Jakarta
-  ZIP: xiaomi.eu_multi_HMNote8_21.8.25_v12
+  ZIP: xiaomi.eu_multi_HMNote8_21.8.25_v12-11
+  VERSION: 21.8.25
 
 jobs:
   build:
@@ -27,7 +28,7 @@ jobs:
             sudo -E apt-get -qq install git wget
        
        - name: Clone ErfanGSI Source Code
-         run: git clone --recurse-submodules https://github.com/erfanoabdi/ErfanGSIs.git ErfanGSIs
+         run: git clone --recurse-submodules https://github.com/AnGgIt88/ErfanGSIs-VelanGSIs ErfanGSIs
          
        - name: Fix exit
          run: |
@@ -49,11 +50,13 @@ jobs:
               mkdir final
               zip -r final/$ZIP.zip ./*
        
-       - name: Upload GSI to WeTransfer
-         run: |
-              cd $GITHUB_WORKSPACE/ErfanGSIs/output
-              curl -sL https://git.io/file-transfer | sh
-              ./transfer wet ./final/$ZIP.zip
+       - name: Upload SGSI to action-gh-release...
+         uses: ncipollo/release-action@v1.8.6
+         with:
+           artifacts: final/*
+           name: $VERSION
+           tag: $VERSION-${{ github.run_number }}
+           token: ${{ secrets.GITHUB_TOKEN }}
 
          
             
