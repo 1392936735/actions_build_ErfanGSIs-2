@@ -1,17 +1,10 @@
 name: build_ErfanGSIs
 
-on:
-#  release:
-#    types: [published]
-#  push:
-#    branches:
-#      - master
-#    paths:
-#      - '.config'
-#  schedule:
-#    - cron: 0 8 * * 5
-  watch:
-    types: [started]
+on: 
+  workflow_dispatch:
+defaults:
+  run:
+    shell: bash
     
 env:
   ROM_URL: https://udomain.dl.sourceforge.net/project/xiaomi-eu-multilang-miui-roms/xiaomi.eu/MIUI-WEEKLY-RELEASES/21.8.25/xiaomi.eu_multi_HMNote8_21.8.25_v12-11.zip
