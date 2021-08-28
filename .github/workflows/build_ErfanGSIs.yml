@@ -48,13 +48,6 @@ jobs:
              cd $GITHUB_WORKSPACE/ErfanGSIs/output
              mkdir final
              zip -r final/$ZIP.zip ./*
-             if [[ $(du -sb ${{ steps.var.outputs.pack_sgsi }} | awk '{print $1}') -gt 2097152000 ]];then
-                 echo -e "split packaging..."
-                 tar -cpzf - ${{ steps.var.outputs.pack_sgsi }} | split -d -b 1024m - upload/${{ steps.var.outputs.pack_sgsi }}
-             else
-                 mv ${{ steps.var.outputs.pack_sgsi }} upload/
-             fi
-             ls "final"
        
        - name: Upload SGSI to action-gh-release...
          uses: ncipollo/release-action@v1.8.6
