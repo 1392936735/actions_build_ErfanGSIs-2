@@ -53,8 +53,8 @@ jobs:
          uses: ncipollo/release-action@v1.8.6
          with:
            artifacts: $GITHUB_WORKSPACE/ErfanGSIs/output/final/*
-           name: MIUI 21.8.25
-           tag: MIUI 21.8.25-${{ github.run_number }}
+           name: MIUI-21.8.25
+           tag: MIUI-21.8.25-${{ github.run_number }}
            token: ${{ secrets.GITHUB_TOKEN }}
 
          
