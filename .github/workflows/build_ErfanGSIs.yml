@@ -19,8 +19,11 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
-       - name: Checkout
-         uses: actions/checkout@master
+       - uses: fastai/workflows/ssh@master
+         with:
+           ssh_key: ${{ secrets.SSH_KEY }}
+           key_file: id_ecdsa
+       - uses: actions/checkout@v2
            
        - name: Initialization environment
          run: |
@@ -56,6 +59,7 @@ jobs:
            name: ArcaneOS_rosy-EXORT-UNOFFICIAL-20211028-0354
            tag: ArcaneOS_rosy-EXORT-UNOFFICIAL-20211028-0354-${{ github.run_number }}
            token: ${{ secrets.GITHUB_TOKEN }}
-
+       - name: Session Setup
+           uses: mxschmitt/action-tmate@master
          
             
